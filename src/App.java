@@ -59,17 +59,19 @@ public class App {
                 // List<Contact> showList = contactIMPL.showContactList();
 
                 // for (Contact contact : showList) {
-                //     System.out.println(contact.toString());
+                // System.out.println(contact.toString());
 
                 // }
             } else if (value == 5) {// isleyir
                 operation = false;
             } else if (value == 6) {
-                
-                System.out.println("enter name");
-                contactIMPL.getContactbyName(scanner.nextLine());
 
-            } else {//isleyir
+                System.out.println("enter name");
+                scanner.nextLine();
+                String finder = scanner.nextLine();
+                System.out.println(contactIMPL.getContactbyName(finder));
+
+            } else {// isleyir
                 System.out.println("not any case");
             }
         }

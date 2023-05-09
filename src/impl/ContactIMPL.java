@@ -29,7 +29,7 @@ public class ContactIMPL implements ContactInterface {
 
         List<Contact> contactNameList = new ArrayList<>();
         for (Contact contact : contactList) {
-            if (contact.getName() == name) {
+            if (contact.getName().equals(name)) {
                 contactNameList.add(contact);
                 // System.out.println(contactNameList);
             }
