@@ -3,7 +3,7 @@ package inter;
 import java.util.List;
 
 import entity.*;
-import impl.*;
+
 
 public interface ContactInterface {
     public void addContact(Contact c);

@@ -1,9 +1,5 @@
 package entity;
 
-import java.beans.ConstructorProperties;
-import java.lang.reflect.Constructor;
-
-import javax.management.ConstructorParameters;
 
 public class Contact {
     private String name;
