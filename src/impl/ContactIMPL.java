@@ -31,7 +31,7 @@ public class ContactIMPL implements ContactInterface {
         for (Contact contact : contactList) {
             if (contact.getName() == name) {
                 contactNameList.add(contact);
-                System.out.println(contactNameList);
+                // System.out.println(contactNameList);
             }
 
         }

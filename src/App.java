@@ -56,15 +56,16 @@ public class App {
                 int idDelete = scanner.nextInt();
                 contactIMPL.deleteContactbyID(idDelete);
 
-                List<Contact> showList = contactIMPL.showContactList();
+                // List<Contact> showList = contactIMPL.showContactList();
 
-                for (Contact contact : showList) {
-                    System.out.println(contact.toString());
+                // for (Contact contact : showList) {
+                //     System.out.println(contact.toString());
 
-                }
+                // }
             } else if (value == 5) {// isleyir
                 operation = false;
             } else if (value == 6) {
+                
                 System.out.println("enter name");
                 contactIMPL.getContactbyName(scanner.nextLine());
 
