@@ -49,9 +49,10 @@ public class ContactIMPL implements ContactInterface {
                 deleteList.add(contact);
                 System.out.println("this is going to be deleted " + deleteList);
 
-            } else if (id != contact.getId()) {
-                System.out.println("no such id exists");
+            } else {
+                System.out.println("no id found" + deleteList);
             }
+
         }
         contactList.removeAll(deleteList);
         return contactList;
@@ -60,14 +61,26 @@ public class ContactIMPL implements ContactInterface {
     @Override
     public List<Contact> editContactbyID(int id, int newID, String name, String number) {
         for (Contact contact : contactList) {
-            if (id == contact.getId()) {
+            if (contact.getId() == id) {
                 contact.setId(newID);
                 contact.setName(name);
                 // contact.setSurname(surname);
                 contact.setNumber(number);
-            } 
+            }
+
         }
         return contactList;
+    }
+
+    public boolean checkexist(int id) {
+        for (Contact contact : contactList) {
+            if (id == contact.getId()) {
+                return true;
+            }
+
+        }
+        return false;
+
     }
 
 }

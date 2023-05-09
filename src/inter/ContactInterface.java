@@ -14,6 +14,8 @@ public interface ContactInterface {
 
     public List<Contact> deleteContactbyID(int id);
 
+    public boolean checkexist(int id);
+
     public List<Contact> editContactbyID(int id,int newID, String name, String number);
 
 }

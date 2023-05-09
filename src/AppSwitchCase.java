@@ -86,30 +86,37 @@ public class AppSwitchCase {
                     System.out.println("Enter according to this order:");
                     System.out.println("id you want to edit");
                     int idtoedit;
+                    
                     try {
                         idtoedit = scanner.nextInt();
+                        
                     } catch (InputMismatchException e) {
                         System.out.println("Enter a number.");
                         scanner.nextLine(); // Clear the input buffer
                         continue; // Restart the loop
                     }
+                    if (contactIMPL.checkexist(idtoedit)) {
+                        System.out.println("new id you want to set");
+                        int newid;
+                        try {
+                            newid = scanner.nextInt();
+                        } catch (InputMismatchException e) {
+                            System.out.println("Enter a number");
+                            scanner.nextLine(); // Clear the input buffer
+                            continue; // Restart the loop
+                        }
+                        scanner.nextLine();
+                        System.out.println("new name");
+                        String newname = scanner.nextLine();
+                        System.out.println("new number");
+                        String newnumber = scanner.nextLine();
 
-                    System.out.println("new id you want to set");
-                    int newid;
-                    try {
-                        newid = scanner.nextInt();
-                    } catch (InputMismatchException e) {
-                        System.out.println("Enter a number");
-                        scanner.nextLine(); // Clear the input buffer
-                        continue; // Restart the loop
+                        System.out.println(contactIMPL.editContactbyID(idtoedit, newid, newname, newnumber));
                     }
-                    scanner.nextLine();
-                    System.out.println("new name");
-                    String newname = scanner.nextLine();
-                    System.out.println("new number");
-                    String newnumber = scanner.nextLine();
-
-                    System.out.println(contactIMPL.editContactbyID(idtoedit, newid, newname, newnumber));
+                    else{
+                        System.out.println("this id does not exist");
+                    }
+                    
                     break;
                 }
                 case 4: {
