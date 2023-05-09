@@ -49,8 +49,6 @@ public class ContactIMPL implements ContactInterface {
                 deleteList.add(contact);
                 System.out.println("this is going to be deleted " + deleteList);
 
-            } else {
-                System.out.println("no id found" + deleteList);
             }
 
         }

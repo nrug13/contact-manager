@@ -86,10 +86,10 @@ public class AppSwitchCase {
                     System.out.println("Enter according to this order:");
                     System.out.println("id you want to edit");
                     int idtoedit;
-                    
+
                     try {
                         idtoedit = scanner.nextInt();
-                        
+
                     } catch (InputMismatchException e) {
                         System.out.println("Enter a number.");
                         scanner.nextLine(); // Clear the input buffer
@@ -112,11 +112,10 @@ public class AppSwitchCase {
                         String newnumber = scanner.nextLine();
 
                         System.out.println(contactIMPL.editContactbyID(idtoedit, newid, newname, newnumber));
-                    }
-                    else{
+                    } else {
                         System.out.println("this id does not exist");
                     }
-                    
+
                     break;
                 }
                 case 4: {
@@ -124,7 +123,12 @@ public class AppSwitchCase {
                     System.out.println("insert id");
                     try {
                         int idDelete = scanner.nextInt();
-                        contactIMPL.deleteContactbyID(idDelete);
+                        if (contactIMPL.checkexist(idDelete)) {
+                            contactIMPL.deleteContactbyID(idDelete);
+                        } else {
+                            System.out.println("no such id");
+                        }
+
                     } catch (InputMismatchException e) {
                         System.out.println("Invalid input. Please enter a valid integer for the ID.");
                         scanner.nextLine(); // Clear the input buffer
