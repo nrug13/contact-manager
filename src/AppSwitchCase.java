@@ -6,10 +6,26 @@ import entity.Contact;
 import impl.ContactIMPL;
 
 public class AppSwitchCase {
+    private static void clearConsole() {
+        try {
+            final String os = System.getProperty("os.name");
+            if (os.contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                Runtime.getRuntime().exec("clear");
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (Exception e) {
+            // Handle exception if unable to clear console
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         ContactIMPL contactIMPL = new ContactIMPL();
         System.out.println("Welcome to the contact manager");
         Scanner scanner = new Scanner(System.in);
+
         boolean operation = true;
         while (operation) {
             System.out.println("1 - add, 2 - show, 3 - edit, 4 - delete, 5 - exit, 6 - getbyname");
@@ -24,6 +40,9 @@ public class AppSwitchCase {
 
             switch (value) {
                 case 1: {
+                    clearConsole();
+                    // System.out.print("\033[H\033[2J");
+                    // System.out.flush();
                     System.out.println("add contact");
                     Contact c = new Contact();
                     System.out.println("id");
@@ -43,8 +62,10 @@ public class AppSwitchCase {
 
                     System.out.println(c);
                     break;
+
                 }
                 case 2: {
+                    clearConsole();
                     System.out.println("showing contacts");
 
                     List<Contact> showList = contactIMPL.showContactList();
@@ -59,6 +80,7 @@ public class AppSwitchCase {
                     break;
                 }
                 case 3: {
+                    clearConsole();
                     System.out.println(
                             "edit contact: enter id, name, number. If id is correct, you can edit. Insert in multiple lines, not one");
                     System.out.println("Enter according to this order:");
@@ -91,6 +113,7 @@ public class AppSwitchCase {
                     break;
                 }
                 case 4: {
+                    clearConsole();
                     System.out.println("insert id");
                     try {
                         int idDelete = scanner.nextInt();
@@ -103,10 +126,12 @@ public class AppSwitchCase {
                     break;
                 }
                 case 5: {
+                    clearConsole();
                     operation = false;
                     break;
                 }
                 case 6: {
+                    clearConsole();
                     System.out.println("enter name");
                     scanner.nextLine();
                     String finder = scanner.nextLine();
