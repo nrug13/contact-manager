@@ -33,12 +33,11 @@ public class ContactIMPL implements ContactInterface {
                 contactNameList.add(contact);
                 // System.out.println(contactNameList);
 
-            }
-            else{
-                System.out.println("no such person exists");
-            }
+            } 
+            
 
         }
+        
         return contactNameList;
     }
 
@@ -51,8 +50,7 @@ public class ContactIMPL implements ContactInterface {
                 deleteList.add(contact);
                 System.out.println("this is going to be deleted " + deleteList);
 
-            } 
-            else if(id !=contact.getId()) {
+            } else if (id != contact.getId()) {
                 System.out.println("no such id exists");
             }
         }
