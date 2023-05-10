@@ -9,7 +9,6 @@ import java.util.List;
 public class ContactIMPL implements ContactInterface {
 
     List<Contact> contactList = new ArrayList<>();
-    
 
     @Override
     public void addContact(Contact c) {
@@ -79,19 +78,20 @@ public class ContactIMPL implements ContactInterface {
             if (contact.getId() == id) {
                 contact.setId(newID);
                 contact.setName(name);
-                // contact.setSurname(surname);
                 contact.setNumber(number);
             }
-
-        }
+           
+        }    
         return contactList;
     }
 
     public boolean checkexist(int id) {
         for (Contact contact : contactList) {
             if (id == contact.getId()) {
+                // System.out.println("this already exists");
                 return true;
             }
+            
 
         }
         return false;
@@ -102,7 +102,7 @@ public class ContactIMPL implements ContactInterface {
     public List<Contact> getbyId(int id) {
         List<Contact> idList = new ArrayList<>();
         for (Contact contact : contactList) {
-            if (contact.getId()==id) {
+            if (contact.getId() == id) {
                 idList.add(contact);
                 // System.out.println(contactNameList);
 
@@ -113,6 +113,19 @@ public class ContactIMPL implements ContactInterface {
         return idList;
     }
 
-   
+    @Override
+
+    public boolean checkexist(String name) {
+
+        for (Contact contact : contactList) {
+            if (contact.getName().equals(name)) {
+                // System.out.println("this already exists");
+                return true;
+            }
+            
+
+        }
+        return false;
+    }
 
 }

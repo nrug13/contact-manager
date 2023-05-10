@@ -15,6 +15,8 @@ public interface ContactInterface {
     public List<Contact> deleteContactbyID(int id);
 
     public boolean checkexist(int id);
+    
+    public boolean checkexist(String name);
 
     public List <Contact> getbyId(int id);
 

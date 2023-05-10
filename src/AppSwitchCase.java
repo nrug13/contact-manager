@@ -81,18 +81,22 @@ public class AppSwitchCase {
                         System.out.println("id must be a number");
                         continue;
                     } catch (ArithmeticException a) {
-                        System.out.println("enter positive number");
+                        System.out.println("this number is negative");
                         continue;
                     }
+                    if (!contactIMPL.checkexist(id)) {
+                        System.out.println("name");
+                        c.setName(scanner.nextLine());
+                        System.out.println("number");
+                        c.setNumber(scanner.nextLine());
 
-                    System.out.println("name");
-                    c.setName(scanner.nextLine());
-                    System.out.println("number");
-                    c.setNumber(scanner.nextLine());
+                        contactIMPL.addContact(c);
 
-                    contactIMPL.addContact(c);
+                        System.out.println(c);
+                    } else {
+                        System.out.println("this id exists");
+                    }
 
-                    System.out.println(c);
                     break;
 
                 }
@@ -152,12 +156,17 @@ public class AppSwitchCase {
                             continue;
                         }
                         scanner.nextLine();
-                        System.out.println("new name");
-                        String newname = scanner.nextLine();
-                        System.out.println("new number");
-                        String newnumber = scanner.nextLine();
+                        if (!contactIMPL.checkexist(newid)) {
+                            System.out.println("new name");
+                            String newname = scanner.nextLine();
+                            System.out.println("new number");
+                            String newnumber = scanner.nextLine();
 
-                        System.out.println(contactIMPL.editContactbyID(idtoedit, newid, newname, newnumber));
+                            System.out.println(contactIMPL.editContactbyID(idtoedit, newid, newname, newnumber));
+                        }
+                        else{
+                            System.out.println("this id exists");
+                        }
                     } else {
                         System.out.println("this id does not exist");
                     }
