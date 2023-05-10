@@ -4,6 +4,7 @@ import java.util.Scanner;
 import entity.Contact;
 import impl.ContactIMPL;
 public class AppSwitchCase {
+    ////bu hisse console-daki tarixceni silmek ucundur
     private static void clearConsole() {
         try {
             final String os = System.getProperty("os.name");
@@ -18,7 +19,7 @@ public class AppSwitchCase {
             // Handle exception if unable to clear console
         }
     }
-    
+    //////////////////bu hisse menfi eded olanda exception ucundur
     public static void positivenumber(int a) throws ArithmeticException {
 
         if (a < 0) {
