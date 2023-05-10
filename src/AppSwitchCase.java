@@ -30,9 +30,18 @@ public class AppSwitchCase {
         ContactIMPL contactIMPL = new ContactIMPL();
         System.out.println("Welcome to the contact manager");
         Scanner scanner = new Scanner(System.in);
+        ////adding default contacts
+        Contact c1=new Contact(1, "nurgun", "22");
+        Contact c2 = new Contact(2, "ulker", "2");
+        Contact c3 = new Contact(3, "gulnar", "16");
+        contactIMPL.addContact(c1);
+        contactIMPL.addContact(c2);
+        contactIMPL.addContact(c3);
 
+        
         boolean operation = true;
         while (operation) {
+            
             System.out.println(
                     "1 - add, 2 - show, 3 - edit, 4 - delete, 5 - exit, 6 - getbyname, 7-getbyid, 8- getbynumber");
             int value;
@@ -46,7 +55,7 @@ public class AppSwitchCase {
                 continue; // Restart the loop
             }
             catch(ArithmeticException a){
-                System.out.println("enter positive number");
+                System.out.println("this number is negative");
                 continue;
             }
 
@@ -60,12 +69,18 @@ public class AppSwitchCase {
                     System.out.println("id");
 
                     //// if id should be positive number
-
+                    int id;
                     try {
-                        c.setId(scanner.nextInt());
+                        id = scanner.nextInt();
+                        positivenumber(id);
+                        c.setId(id);
                         scanner.nextLine();
                     } catch (InputMismatchException e) {
                         System.out.println("id must be a number");
+                        continue;
+                    }
+                    catch (ArithmeticException a) {
+                        System.out.println("enter positive number");
                         continue;
                     }
 
@@ -105,22 +120,38 @@ public class AppSwitchCase {
                     int idtoedit;
 
                     try {
+                        
                         idtoedit = scanner.nextInt();
+                        positivenumber(idtoedit);
 
                     } catch (InputMismatchException e) {
                         System.out.println("Enter a number.");
                         scanner.nextLine(); // Clear the input buffer
                         continue; // Restart the loop
                     }
+                    catch (ArithmeticException a) {
+                        System.out.println("this number is negative");
+                        continue;
+                    }
                     if (contactIMPL.checkexist(idtoedit)) {
+                        Setnewid:
                         System.out.println("new id you want to set");
                         int newid;
                         try {
+                            
                             newid = scanner.nextInt();
+                            positivenumber(newid);
+                            
                         } catch (InputMismatchException e) {
                             System.out.println("Enter a number");
-                            scanner.nextLine(); // Clear the input buffer
-                            continue; // Restart the loop
+                            scanner.nextLine();
+                            
+                            continue;
+                        }
+                        catch (ArithmeticException a) {
+                            System.out.println("this number is negative");
+                            
+                            continue;
                         }
                         scanner.nextLine();
                         System.out.println("new name");
@@ -138,8 +169,10 @@ public class AppSwitchCase {
                 case 4: {
                     clearConsole();
                     System.out.println("insert id");
+                    int idDelete ;
                     try {
-                        int idDelete = scanner.nextInt();
+                        idDelete = scanner.nextInt();
+                        positivenumber(idDelete);
                         if (contactIMPL.checkexist(idDelete)) {
                             contactIMPL.deleteContactbyID(idDelete);
                         } else {
@@ -150,6 +183,10 @@ public class AppSwitchCase {
                         System.out.println("Invalid input. Please enter a valid integer for the ID.");
                         scanner.nextLine(); // Clear the input buffer
                         continue; // Restart the loop
+                    }
+                    catch (ArithmeticException a) {
+                        System.out.println("this number is negative");
+                        continue;
                     }
                     break;
                 }
@@ -175,11 +212,16 @@ public class AppSwitchCase {
                     int finder;
                     try {
                         finder = scanner.nextInt();
+                        positivenumber(finder);
                         System.out.println(contactIMPL.getbyId(finder));
                     } catch (InputMismatchException e) {
                         System.out.println("Please enter a valid integer.");
                         scanner.nextLine(); // Clear the input buffer
                         continue; // Restart the loop
+                    }
+                    catch (ArithmeticException a) {
+                        System.out.println("this number is negative");
+                        continue;
                     }
                     
                    break;

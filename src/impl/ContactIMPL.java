@@ -9,6 +9,7 @@ import java.util.List;
 public class ContactIMPL implements ContactInterface {
 
     List<Contact> contactList = new ArrayList<>();
+    
 
     @Override
     public void addContact(Contact c) {
