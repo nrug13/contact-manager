@@ -1,10 +1,8 @@
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-
 import entity.Contact;
 import impl.ContactIMPL;
-
 public class AppSwitchCase {
     private static void clearConsole() {
         try {
@@ -20,7 +18,14 @@ public class AppSwitchCase {
             // Handle exception if unable to clear console
         }
     }
+    
+    public static void positivenumber(int a) throws ArithmeticException {
 
+        if (a < 0) {
+            System.out.println(a);
+            throw new ArithmeticException("this value negative");
+        }
+    }
     public static void main(String[] args) throws Exception {
         ContactIMPL contactIMPL = new ContactIMPL();
         System.out.println("Welcome to the contact manager");
@@ -28,14 +33,21 @@ public class AppSwitchCase {
 
         boolean operation = true;
         while (operation) {
-            System.out.println("1 - add, 2 - show, 3 - edit, 4 - delete, 5 - exit, 6 - getbyname");
+            System.out.println(
+                    "1 - add, 2 - show, 3 - edit, 4 - delete, 5 - exit, 6 - getbyname, 7-getbyid, 8- getbynumber");
             int value;
             try {
                 value = scanner.nextInt();
+                positivenumber(value);
+               
             } catch (InputMismatchException e) {
                 System.out.println("Please enter a valid integer.");
                 scanner.nextLine(); // Clear the input buffer
                 continue; // Restart the loop
+            }
+            catch(ArithmeticException a){
+                System.out.println("enter positive number");
+                continue;
             }
 
             switch (value) {
@@ -46,6 +58,9 @@ public class AppSwitchCase {
                     System.out.println("add contact");
                     Contact c = new Contact();
                     System.out.println("id");
+
+                    //// if id should be positive number
+
                     try {
                         c.setId(scanner.nextInt());
                         scanner.nextLine();
@@ -53,6 +68,8 @@ public class AppSwitchCase {
                         System.out.println("id must be a number");
                         continue;
                     }
+
+
                     System.out.println("name");
                     c.setName(scanner.nextLine());
                     System.out.println("number");
@@ -150,9 +167,36 @@ public class AppSwitchCase {
                     break;
 
                 }
+
+                case 7: {
+                    clearConsole();
+                    System.out.println("enter id");
+                    scanner.nextLine();
+                    int finder;
+                    try {
+                        finder = scanner.nextInt();
+                        System.out.println(contactIMPL.getbyId(finder));
+                    } catch (InputMismatchException e) {
+                        System.out.println("Please enter a valid integer.");
+                        scanner.nextLine(); // Clear the input buffer
+                        continue; // Restart the loop
+                    }
+                    
+                   break;
+
+                }
+                case 8: {
+                    clearConsole();
+                    System.out.println("enter number");
+                    scanner.nextLine();
+                    String finder = scanner.nextLine();
+                    System.out.println(contactIMPL.getbyNumber(finder));
+                    break;
+
+                }
                 default:
                     System.out.println("no case");
-                    break;
+                break;
             }
         }
     }

@@ -41,6 +41,22 @@ public class ContactIMPL implements ContactInterface {
     }
 
     @Override
+    public List<Contact> getbyNumber(String number) {
+
+        List<Contact> contactNameList = new ArrayList<>();
+        for (Contact contact : contactList) {
+            if (contact.getName().equals(number)) {
+                contactNameList.add(contact);
+                // System.out.println(contactNameList);
+
+            }
+
+        }
+
+        return contactNameList;
+    }
+
+    @Override
     public List<Contact> deleteContactbyID(int id) {
         List<Contact> deleteList = new ArrayList<>();
         for (Contact contact : contactList) {
@@ -80,5 +96,22 @@ public class ContactIMPL implements ContactInterface {
         return false;
 
     }
+
+    @Override
+    public List<Contact> getbyId(int id) {
+        List<Contact> idList = new ArrayList<>();
+        for (Contact contact : contactList) {
+            if (contact.getId()==id) {
+                idList.add(contact);
+                // System.out.println(contactNameList);
+
+            }
+
+        }
+
+        return idList;
+    }
+
+   
 
 }

@@ -16,6 +16,10 @@ public interface ContactInterface {
 
     public boolean checkexist(int id);
 
+    public List <Contact> getbyId(int id);
+
+    public List<Contact> getbyNumber(String s);
+
     public List<Contact> editContactbyID(int id,int newID, String name, String number);
 
 }
