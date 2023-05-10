@@ -41,10 +41,11 @@ public class AppSwitchCase {
         contactIMPL.addContact(c1);
         contactIMPL.addContact(c2);
         contactIMPL.addContact(c3);
+        
 
         boolean operation = true;
         while (operation) {
-
+            
             System.out.println(
                     "1 - add, 2 - show, 3 - edit, 4 - delete, 5 - exit, 6 - getbyname, 7-getbyid, 8- getbynumber");
             int value;
@@ -236,6 +237,7 @@ public class AppSwitchCase {
                     clearConsole();
                     System.out.println("enter number");
                     scanner.nextLine();
+                    // System.out.println(contactIMPL.showContactList());
                     String finder = scanner.nextLine();
                     System.out.println(contactIMPL.getbyNumber(finder));
                     break;

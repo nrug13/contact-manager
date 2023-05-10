@@ -10,6 +10,10 @@ public class ContactIMPL implements ContactInterface {
 
     List<Contact> contactList = new ArrayList<>();
 
+    // Contact c1 = new Contact(1, "nurgun", "22");
+    // Contact c2 = new Contact(2, "ulker", "2");
+    // Contact c3 = new Contact(3, "gulnar", "16");
+
     @Override
     public void addContact(Contact c) {
         contactList.add(c);
@@ -45,7 +49,7 @@ public class ContactIMPL implements ContactInterface {
 
         List<Contact> contactNameList = new ArrayList<>();
         for (Contact contact : contactList) {
-            if (contact.getName().equals(number)) {
+            if (contact.getNumber().equals(number)) {
                 contactNameList.add(contact);
                 // System.out.println(contactNameList);
 
@@ -80,8 +84,8 @@ public class ContactIMPL implements ContactInterface {
                 contact.setName(name);
                 contact.setNumber(number);
             }
-           
-        }    
+
+        }
         return contactList;
     }
 
@@ -91,7 +95,6 @@ public class ContactIMPL implements ContactInterface {
                 // System.out.println("this already exists");
                 return true;
             }
-            
 
         }
         return false;
@@ -122,7 +125,6 @@ public class ContactIMPL implements ContactInterface {
                 // System.out.println("this already exists");
                 return true;
             }
-            
 
         }
         return false;
