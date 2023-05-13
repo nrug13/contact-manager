@@ -5,6 +5,7 @@ import inter.ContactInterface;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ContactIMPL implements ContactInterface {
 
@@ -129,5 +130,36 @@ public class ContactIMPL implements ContactInterface {
         }
         return false;
     }
+
+    // @Override
+    // public List<Contact> addContactList(List<Contact> listWithRandom) {
+    // listWithRandom = new ArrayList<>();
+    // showContactList().addAll(listWithRandom);
+    // return showContactList();
+
+    // }
+    public void createRandomContacts(int numberOfContacts) {
+        Random random = new Random();
+
+        for (int i = 0; i < numberOfContacts; i++) {
+            int id1 = 1;
+            int id2 = 100;
+            int id= (int) (Math.floor(Math.random() * (id1 - id2)) + (id2));
+
+             // Generate a random ID
+            String name = "random person" + id; // Generate a random name (implement this method separately)
+            String number = "1" + id * 10; // Generate a random number (implement this method separately)
+
+            Contact contact = new Contact(id, name, number);
+            contactList.add(contact);
+
+        }
+    }
+
+    // @Override
+    // public List<Contact> Randomlist(int a) {
+       
+    //     return contactList;
+    // }
 
 }

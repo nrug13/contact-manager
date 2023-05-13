@@ -10,6 +10,8 @@ public interface ContactInterface {
 
     List<Contact> showContactList();
 
+    // public List<Contact> Randomlist(int a);
+
     public List<Contact> getContactbyName(String name);
 
     public List<Contact> deleteContactbyID(int id);

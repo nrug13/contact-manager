@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 import entity.Contact;
 import impl.ContactIMPL;
+import java.util.Random;
 
 public class AppSwitchCase {
     //// bu hisse console-daki tarixceni silmek ucundur
@@ -21,6 +22,11 @@ public class AppSwitchCase {
         }
     }
 
+    public static void menu() {
+        System.out.println(
+                "1 - add, 2 - show, 3 - edit, 4 - delete, 5 - exit, 6 - getbyname, 7-getbyid, 8- getbynumber");
+    }
+
     ////////////////// bu hisse menfi eded olanda exception ucundur
     public static void positivenumber(int a) throws ArithmeticException {
 
@@ -30,24 +36,29 @@ public class AppSwitchCase {
         }
     }
 
+    
+    
     public static void main(String[] args) throws Exception {
+        clearConsole();
         ContactIMPL contactIMPL = new ContactIMPL();
         System.out.println("Welcome to the contact manager");
         Scanner scanner = new Scanner(System.in);
-        //// adding default contacts
-        Contact c1 = new Contact(1, "nurgun", "22");
-        Contact c2 = new Contact(2, "ulker", "2");
-        Contact c3 = new Contact(3, "gulnar", "16");
-        contactIMPL.addContact(c1);
-        contactIMPL.addContact(c2);
-        contactIMPL.addContact(c3);
-        
+        // adding default contacts
+        // Contact c1 = new Contact(1, "nurgun", "22");
+        // Contact c2 = new Contact(2, "ulker", "2");
+        // Contact c3 = new Contact(3, "gulnar", "16");
+        // contactIMPL.addContact(c1);
+        // contactIMPL.addContact(c2);
+        // contactIMPL.addContact(c3);
+        contactIMPL.createRandomContacts(4);
 
+
+        
         boolean operation = true;
         while (operation) {
-            
-            System.out.println(
-                    "1 - add, 2 - show, 3 - edit, 4 - delete, 5 - exit, 6 - getbyname, 7-getbyid, 8- getbynumber");
+
+            menu();
+
             int value;
             try {
                 value = scanner.nextInt();
@@ -63,26 +74,27 @@ public class AppSwitchCase {
             }
 
             switch (value) {
+
                 case 1: {
                     clearConsole();
-                    // System.out.print("\033[H\033[2J");
-                    // System.out.flush();
                     System.out.println("add contact");
                     Contact c = new Contact();
                     System.out.println("id");
-
                     //// if id should be positive number
-                    int id;
+                    int id = 0;
                     try {
                         id = scanner.nextInt();
                         positivenumber(id);
                         c.setId(id);
                         scanner.nextLine();
+
                     } catch (InputMismatchException e) {
                         System.out.println("id must be a number");
+
                         continue;
                     } catch (ArithmeticException a) {
                         System.out.println("this number is negative");
+
                         continue;
                     }
                     if (!contactIMPL.checkexist(id)) {
@@ -164,8 +176,7 @@ public class AppSwitchCase {
                             String newnumber = scanner.nextLine();
 
                             System.out.println(contactIMPL.editContactbyID(idtoedit, newid, newname, newnumber));
-                        }
-                        else{
+                        } else {
                             System.out.println("this id exists");
                         }
                     } else {
@@ -229,17 +240,15 @@ public class AppSwitchCase {
                         System.out.println("this number is negative");
                         continue;
                     }
-
                     break;
-
                 }
                 case 8: {
                     clearConsole();
                     System.out.println("enter number");
                     scanner.nextLine();
-                    // System.out.println(contactIMPL.showContactList());
                     String finder = scanner.nextLine();
                     System.out.println(contactIMPL.getbyNumber(finder));
+
                     break;
 
                 }
@@ -247,6 +256,8 @@ public class AppSwitchCase {
                     System.out.println("no case");
                     break;
             }
+
         }
+        clearConsole();
     }
 }

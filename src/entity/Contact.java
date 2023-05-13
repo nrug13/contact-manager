@@ -3,10 +3,10 @@ package entity;
 
 public class Contact {
     private String name;
-    private String surname;
+    // private String surname;
     private int id;
     private String number;
-    private String email;
+    // private String email;
 
     // get-set
     public String getName() {
@@ -17,13 +17,13 @@ public class Contact {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
+    // public String getSurname() {
+    //     return surname;
+    // }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
+    // public void setSurname(String surname) {
+    //     this.surname = surname;
+    // }
 
     public int getId() {
         return id;
@@ -41,13 +41,13 @@ public class Contact {
         this.number = number;
     }
 
-    public String getEmail() {
-        return email;
-    }
+    // public String getEmail() {
+    //     return email;
+    // }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    // public void setEmail(String email) {
+    //     this.email = email;
+    // }
 
     /// constructors
 
@@ -61,13 +61,13 @@ public class Contact {
         this.number = number;
     }
 
-    public Contact(String name, String surname, int id, String number, String email) {
-        this.name = name;
-        this.surname = surname;
-        this.id = id;
-        this.number = number;
-        this.email = email;
-    }
+    // public Contact(String name, String surname, int id, String number, String email) {
+    //     this.name = name;
+    //     this.surname = surname;
+    //     this.id = id;
+    //     this.number = number;
+    //     this.email = email;
+    // }
 
     @Override
     public String toString() {
