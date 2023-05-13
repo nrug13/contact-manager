@@ -1,6 +1,7 @@
 package inter;
 
 import java.util.List;
+import java.util.Scanner;
 
 import entity.*;
 
@@ -25,5 +26,6 @@ public interface ContactInterface {
     public List<Contact> getbyNumber(String s);
 
     public List<Contact> editContactbyID(int id,int newID, String name, String number);
+    
 
 }

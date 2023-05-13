@@ -39,9 +39,12 @@ public class ContactIMPL implements ContactInterface {
                 // System.out.println(contactNameList);
 
             }
+           
 
         }
-
+        if (contactNameList.size() == 0) {
+            System.out.println("this does not exist");
+        }
         return contactNameList;
     }
 
@@ -57,7 +60,9 @@ public class ContactIMPL implements ContactInterface {
             }
 
         }
-
+        if (contactNameList.size() == 0) {
+            System.out.println("this does not exist");
+        }
         return contactNameList;
     }
 
@@ -113,7 +118,9 @@ public class ContactIMPL implements ContactInterface {
             }
 
         }
-
+        if (idList.size() == 0) {
+            System.out.println("this does not exist");
+        }
         return idList;
     }
 
@@ -144,9 +151,9 @@ public class ContactIMPL implements ContactInterface {
         for (int i = 0; i < numberOfContacts; i++) {
             int id1 = 1;
             int id2 = 100;
-            int id= (int) (Math.floor(Math.random() * (id1 - id2)) + (id2));
+            int id = (int) (Math.floor(Math.random() * (id1 - id2)) + (id2));
 
-             // Generate a random ID
+            // Generate a random ID
             String name = "random person" + id; // Generate a random name (implement this method separately)
             String number = "1" + id * 10; // Generate a random number (implement this method separately)
 
@@ -158,8 +165,8 @@ public class ContactIMPL implements ContactInterface {
 
     // @Override
     // public List<Contact> Randomlist(int a) {
-       
-    //     return contactList;
+
+    // return contactList;
     // }
 
 }

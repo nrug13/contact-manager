@@ -108,6 +108,7 @@ public class AppSwitchCase {
                     for (Contact contact : showList) {
                         System.out.println(contact.toString());
                     }
+                    // System.out.println(showList);
 
                     if (showList.size() == 0) {
                         System.out.println("list is empty");
@@ -121,7 +122,6 @@ public class AppSwitchCase {
                     System.out.println("Enter according to this order:");
                     System.out.println("id you want to edit");
                     int idtoedit = checkNumber(scanner);
-                    
 
                     // try {
 
@@ -224,20 +224,21 @@ public class AppSwitchCase {
                     scanner.nextLine();
                     // int finder;
                     // try {
-                    //     finder = scanner.nextInt();
-                    //     positivenumber(finder);
-                    //     System.out.println(contactIMPL.getbyId(finder));
+                    // finder = scanner.nextInt();
+                    // positivenumber(finder);
+                    // System.out.println(contactIMPL.getbyId(finder));
                     // } catch (InputMismatchException e) {
-                    //     System.out.println("Please enter a valid integer.");
-                    //     scanner.nextLine(); // Clear the input buffer
-                    //     continue; // Restart the loop
+                    // System.out.println("Please enter a valid integer.");
+                    // scanner.nextLine(); // Clear the input buffer
+                    // continue; // Restart the loop
                     // } catch (ArithmeticException a) {
-                    //     System.out.println("this number is negative");
-                    //     continue;
+                    // System.out.println("this number is negative");
+                    // continue;
                     // }
                     int finder = checkNumber(scanner);
 
                     System.out.println(contactIMPL.getbyId(finder));
+                   
                     break;
                 }
                 case 8: {
