@@ -52,16 +52,14 @@ public class AppSwitchCase {
         }
     }
     /// phone number uzunlugunu yoxlamaq
-    private static boolean phoneNumberLength(String a) {
-        int length = 10;
+    private static boolean phoneNumberLength(String a) throws ArithmeticException  {
+        if(a.length()!=10){
+            
+            System.out.println(a);
+            
+             throw new ArithmeticException("lenght is not 10");
+            
 
-        try {
-            if (a.length() != length) {
-                throw new ArithmeticException("Invalid phone number length");
-            }
-        } catch (ArithmeticException e) {
-            System.out.println("Error: " + e.getMessage());
-            return false;
         }
 
         return true;
@@ -105,12 +103,16 @@ public class AppSwitchCase {
                         c.setName(name);
                         System.out.println("number");
                         String number = scanner.nextLine();
-                        if (phoneNumberLength(number)) {
+                        try {
+                            if (phoneNumberLength(number)) {
 
-                            c.setNumber(number);
-                            c.setId(id);
-                            contactIMPL.addContact(c);
-                            System.out.println(c);
+                                c.setNumber(number);
+                                c.setId(id);
+                                contactIMPL.addContact(c);
+                                System.out.println(c);
+                            }
+                        } catch (ArithmeticException e) {
+                            System.out.println(e);
                         }
 
                     } else {
@@ -181,9 +183,16 @@ public class AppSwitchCase {
                             String newname = scanner.nextLine();
                             System.out.println("new number");
                             String newnumber = scanner.nextLine();
-                            if (phoneNumberLength(newnumber)) {
-                                System.out.println(contactIMPL.editContactbyID(idtoedit, newid, newname, newnumber));
+                            try {
+                                if (phoneNumberLength(newnumber)) {
+                                    System.out
+                                            .println(contactIMPL.editContactbyID(idtoedit, newid, newname, newnumber));
+                                }
+                            } catch (Exception e) {
+                               System.out.println(e);
+                               
                             }
+
 
                         } else {
                             System.out.println("this id exists");
