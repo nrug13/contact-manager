@@ -11,10 +11,6 @@ public class ContactIMPL implements ContactInterface {
 
     List<Contact> contactList = new ArrayList<>();
 
-    // Contact c1 = new Contact(1, "nurgun", "22");
-    // Contact c2 = new Contact(2, "ulker", "2");
-    // Contact c3 = new Contact(3, "gulnar", "16");
-
     @Override
     public void addContact(Contact c) {
         contactList.add(c);
@@ -22,10 +18,6 @@ public class ContactIMPL implements ContactInterface {
 
     @Override
     public List<Contact> showContactList() {
-
-        // for (Contact contact : contactList) {
-        // System.out.println(contact);
-        // }
         return contactList;
     }
 
@@ -36,10 +28,8 @@ public class ContactIMPL implements ContactInterface {
         for (Contact contact : contactList) {
             if (contact.getName().equals(name)) {
                 contactNameList.add(contact);
-                // System.out.println(contactNameList);
 
             }
-           
 
         }
         if (contactNameList.size() == 0) {
@@ -55,7 +45,6 @@ public class ContactIMPL implements ContactInterface {
         for (Contact contact : contactList) {
             if (contact.getNumber().equals(number)) {
                 contactNameList.add(contact);
-                // System.out.println(contactNameList);
 
             }
 
@@ -98,7 +87,7 @@ public class ContactIMPL implements ContactInterface {
     public boolean checkexist(int id) {
         for (Contact contact : contactList) {
             if (id == contact.getId()) {
-                // System.out.println("this already exists");
+
                 return true;
             }
 
@@ -130,7 +119,6 @@ public class ContactIMPL implements ContactInterface {
 
         for (Contact contact : contactList) {
             if (contact.getName().equals(name)) {
-                // System.out.println("this already exists");
                 return true;
             }
 
@@ -138,13 +126,6 @@ public class ContactIMPL implements ContactInterface {
         return false;
     }
 
-    // @Override
-    // public List<Contact> addContactList(List<Contact> listWithRandom) {
-    // listWithRandom = new ArrayList<>();
-    // showContactList().addAll(listWithRandom);
-    // return showContactList();
-
-    // }
     public void createRandomContacts(int numberOfContacts) {
         Random random = new Random();
 
@@ -152,32 +133,12 @@ public class ContactIMPL implements ContactInterface {
             int id1 = 1;
             int id2 = 100;
             int id = (int) (Math.floor(Math.random() * (id1 - id2)) + (id2));
-
-            // Generate a random ID
-            String name = "random person" + id; // Generate a random name (implement this method separately)
-            String number = "994" + id * 10; // Generate a random number (implement this method separately)
-
+            String name = "random person" + id;
+            String number = "994" + id * 10;
             Contact contact = new Contact(id, name, number);
             contactList.add(contact);
 
         }
     }
-
-    @Override
-    public boolean checknumberlenght(String number) {
-        boolean val=true;
-        if(number.length()!=10){
-            val=false;
-            throw new UnsupportedOperationException("Lenght should be 10");
-        }
-        return val;
-        
-    }
-
-    // @Override
-    // public List<Contact> Randomlist(int a) {
-
-    // return contactList;
-    // }
 
 }

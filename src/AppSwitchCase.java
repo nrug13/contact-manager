@@ -36,7 +36,7 @@ public class AppSwitchCase {
         }
 
     }
-
+    /// daxil olan inputun reqem oldugunu yoxlamaq
     private static int checkNumber(Scanner scanner) {
         while (true) {
             try {
@@ -51,7 +51,7 @@ public class AppSwitchCase {
             }
         }
     }
-
+    /// phone number uzunlugunu yoxlamaq
     private static boolean phoneNumberLength(String a) {
         int length = 10;
 
@@ -95,7 +95,7 @@ public class AppSwitchCase {
                     System.out.println("add contact");
                     Contact c = new Contact();
                     System.out.println("id");
-                    //// if id should be positive number
+                    
                     int id = checkNumber(scanner);
 
                     if (!contactIMPL.checkexist(id)) {
