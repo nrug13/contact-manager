@@ -26,6 +26,8 @@ public interface ContactInterface {
     public List<Contact> getbyNumber(String s);
 
     public List<Contact> editContactbyID(int id,int newID, String name, String number);
+
+    public boolean checknumberlenght(String number);
     
 
 }

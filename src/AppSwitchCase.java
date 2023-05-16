@@ -34,6 +34,7 @@ public class AppSwitchCase {
             System.out.println(a);
             throw new ArithmeticException("this value negative");
         }
+
     }
 
     private static int checkNumber(Scanner scanner) {
@@ -49,6 +50,21 @@ public class AppSwitchCase {
                 System.out.println("This number is negative");
             }
         }
+    }
+
+    private static boolean phoneNumberLength(String a) {
+        int length = 10;
+
+        try {
+            if (a.length() != length) {
+                throw new ArithmeticException("Invalid phone number length");
+            }
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+            return false;
+        }
+
+        return true;
     }
 
     public static void main(String[] args) throws Exception {
@@ -89,10 +105,14 @@ public class AppSwitchCase {
                         c.setName(name);
                         System.out.println("number");
                         String number = scanner.nextLine();
-                        c.setNumber(number);
-                        c.setId(id);
-                        contactIMPL.addContact(c);
-                        System.out.println(c);
+                        if (phoneNumberLength(number)) {
+
+                            c.setNumber(number);
+                            c.setId(id);
+                            contactIMPL.addContact(c);
+                            System.out.println(c);
+                        }
+
                     } else {
                         System.out.println("this id exists");
                     }
@@ -161,8 +181,10 @@ public class AppSwitchCase {
                             String newname = scanner.nextLine();
                             System.out.println("new number");
                             String newnumber = scanner.nextLine();
+                            if (phoneNumberLength(newnumber)) {
+                                System.out.println(contactIMPL.editContactbyID(idtoedit, newid, newname, newnumber));
+                            }
 
-                            System.out.println(contactIMPL.editContactbyID(idtoedit, newid, newname, newnumber));
                         } else {
                             System.out.println("this id exists");
                         }
@@ -238,7 +260,7 @@ public class AppSwitchCase {
                     int finder = checkNumber(scanner);
 
                     System.out.println(contactIMPL.getbyId(finder));
-                   
+
                     break;
                 }
                 case 8: {
@@ -259,4 +281,5 @@ public class AppSwitchCase {
         }
         clearConsole();
     }
+
 }

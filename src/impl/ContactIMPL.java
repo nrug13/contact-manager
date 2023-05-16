@@ -155,12 +155,23 @@ public class ContactIMPL implements ContactInterface {
 
             // Generate a random ID
             String name = "random person" + id; // Generate a random name (implement this method separately)
-            String number = "1" + id * 10; // Generate a random number (implement this method separately)
+            String number = "994" + id * 10; // Generate a random number (implement this method separately)
 
             Contact contact = new Contact(id, name, number);
             contactList.add(contact);
 
         }
+    }
+
+    @Override
+    public boolean checknumberlenght(String number) {
+        boolean val=true;
+        if(number.length()!=10){
+            val=false;
+            throw new UnsupportedOperationException("Lenght should be 10");
+        }
+        return val;
+        
     }
 
     // @Override
