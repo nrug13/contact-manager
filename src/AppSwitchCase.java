@@ -29,7 +29,7 @@ public class AppSwitchCase {
 
     ////////////////// bu hisse menfi eded olanda exception ucundur
     public static void positivenumber(int a) throws ArithmeticException {
-
+      
         if (a < 0) {
             System.out.println(a);
             throw new ArithmeticException("this value negative");
@@ -44,9 +44,11 @@ public class AppSwitchCase {
                 positivenumber(value);
                 return value;
             } catch (InputMismatchException e) {
+                System.out.println(e);
                 System.out.println("Please enter a valid integer.");
                 scanner.nextLine(); // Clear the input buffer
             } catch (ArithmeticException a) {
+                System.out.println(a);
                 System.out.println("This number is negative");
             }
         }
