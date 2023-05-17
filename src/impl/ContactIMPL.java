@@ -3,8 +3,10 @@ package impl;
 import entity.*;
 import inter.ContactInterface;
 
+import java.rmi.NoSuchObjectException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 public class ContactIMPL implements ContactInterface {
@@ -67,17 +69,23 @@ public class ContactIMPL implements ContactInterface {
             }
 
         }
+        wrongIdList(deleteList);
         contactList.removeAll(deleteList);
         return contactList;
     }
 
     @Override
     public List<Contact> editContactbyID(int id, int newID, String name, String number) {
+        List<Contact> editList = new ArrayList<>() {
+
+        };
         for (Contact contact : contactList) {
             if (contact.getId() == id) {
-                contact.setId(newID);
-                contact.setName(name);
-                contact.setNumber(number);
+                if (!wrongIdList(editList)) {
+                    contact.setName(name);
+                    contact.setNumber(number);
+                }
+
             }
 
         }
@@ -102,15 +110,28 @@ public class ContactIMPL implements ContactInterface {
         for (Contact contact : contactList) {
             if (contact.getId() == id) {
                 idList.add(contact);
-                // System.out.println(contactNameList);
 
             }
 
         }
-        if (idList.size() == 0) {
-            System.out.println("this does not exist");
+        try {
+            wrongIdList(idList);
+        } catch (Exception e) {
+
         }
         return idList;
+    }
+
+    public boolean wrongIdList(List<Contact> idList) throws NoSuchElementException {
+        boolean flag = true;
+        if (idList.size() == 0) {
+            System.out.println("error");
+            System.out.println(NoSuchElementException.class);
+            System.out.println("this does not exist");
+            flag = false;
+        }
+        return flag;
+
     }
 
     @Override

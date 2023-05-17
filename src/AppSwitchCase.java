@@ -29,13 +29,14 @@ public class AppSwitchCase {
 
     ////////////////// bu hisse menfi eded olanda exception ucundur
     public static void positivenumber(int a) throws ArithmeticException {
-      
+
         if (a < 0) {
             System.out.println(a);
             throw new ArithmeticException("this value negative");
         }
 
     }
+
     /// daxil olan inputun reqem oldugunu yoxlamaq
     private static int checkNumber(Scanner scanner) {
         while (true) {
@@ -50,17 +51,18 @@ public class AppSwitchCase {
             } catch (ArithmeticException a) {
                 System.out.println(a);
                 System.out.println("This number is negative");
+                System.out.println("id");
             }
         }
     }
+
     /// phone number uzunlugunu yoxlamaq
-    private static boolean phoneNumberLength(String a) throws ArithmeticException  {
-        if(a.length()!=10){
-            
+    private static boolean phoneNumberLength(String a) throws ArithmeticException {
+        if (a.length() != 10) {
+
             System.out.println(a);
-            
-             throw new ArithmeticException("lenght is not 10");
-            
+
+            throw new ArithmeticException("lenght is not 10");
 
         }
 
@@ -95,7 +97,7 @@ public class AppSwitchCase {
                     System.out.println("add contact");
                     Contact c = new Contact();
                     System.out.println("id");
-                    
+
                     int id = checkNumber(scanner);
 
                     if (!contactIMPL.checkexist(id)) {
@@ -164,41 +166,23 @@ public class AppSwitchCase {
 
                         System.out.println("new id you want to set");
                         int newid = checkNumber(scanner);
-                        // try {
 
-                        // newid = scanner.nextInt();
-                        // positivenumber(newid);
-
-                        // } catch (InputMismatchException e) {
-                        // System.out.println("Enter a number");
-                        // scanner.nextLine();
-
-                        // continue;
-                        // } catch (ArithmeticException a) {
-                        // System.out.println("this number is negative");
-
-                        // continue;
-                        // }
                         scanner.nextLine();
-                        if (!contactIMPL.checkexist(newid)) {
-                            System.out.println("new name");
-                            String newname = scanner.nextLine();
-                            System.out.println("new number");
-                            String newnumber = scanner.nextLine();
-                            try {
-                                if (phoneNumberLength(newnumber)) {
-                                    System.out
-                                            .println(contactIMPL.editContactbyID(idtoedit, newid, newname, newnumber));
-                                }
-                            } catch (Exception e) {
-                               System.out.println(e);
-                               
+
+                        System.out.println("new name");
+                        String newname = scanner.nextLine();
+                        System.out.println("new number");
+                        String newnumber = scanner.nextLine();
+                        try {
+                            if (phoneNumberLength(newnumber)) {
+                                System.out
+                                        .println(contactIMPL.editContactbyID(idtoedit, newid, newname, newnumber));
                             }
+                        } catch (Exception e) {
+                            System.out.println(e);
 
-
-                        } else {
-                            System.out.println("this id exists");
                         }
+
                     } else {
                         System.out.println("this id does not exist");
                     }
@@ -229,11 +213,7 @@ public class AppSwitchCase {
                     // continue;
                     // }
 
-                    if (contactIMPL.checkexist(idDelete)) {
-                        contactIMPL.deleteContactbyID(idDelete);
-                    } else {
-                        System.out.println("no such id");
-                    }
+                    contactIMPL.deleteContactbyID(idDelete);
                     break;
                 }
                 case 5: {
