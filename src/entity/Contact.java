@@ -26,7 +26,7 @@ public class Contact {
     }
 
     public void setNumber(String number) {
-        this.number = number;
+        this.number = "+994 " + number;
     }
 
     public Contact() {
@@ -36,7 +36,8 @@ public class Contact {
     public Contact(int id, String name, String number) {
         this.name = name;
         this.id = id;
-        this.number = number;
+        this.number = "+994" + number;
+
     }
 
     @Override

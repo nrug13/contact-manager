@@ -3,112 +3,53 @@ import java.util.List;
 import java.util.Scanner;
 import entity.Contact;
 import impl.ContactIMPL;
+import inter.ContactInterface;
 import java.util.Random;
-
 public class AppSwitchCase {
-    //// bu hisse console-daki tarixceni silmek ucundur
-    private static void clearConsole() {
-        try {
-            final String os = System.getProperty("os.name");
-            if (os.contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                Runtime.getRuntime().exec("clear");
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
-            }
-        } catch (Exception e) {
-            // Handle exception if unable to clear console
-        }
-    }
-
-    public static void menu() {
-        System.out.println(
-                "1 - add, 2 - show, 3 - edit, 4 - delete, 5 - exit, 6 - getbyname, 7-getbyid, 8- getbynumber");
-    }
-
-    ////////////////// bu hisse menfi eded olanda exception ucundur
-    public static void positivenumber(int a) throws ArithmeticException {
-
-        if (a < 0) {
-            System.out.println(a);
-            throw new ArithmeticException("this value negative");
-        }
-
-    }
-
-    /// daxil olan inputun reqem oldugunu yoxlamaq
-    private static int checkNumber(Scanner scanner) {
-        while (true) {
-            try {
-                int value = scanner.nextInt();
-                positivenumber(value);
-                return value;
-            } catch (InputMismatchException e) {
-                System.out.println(e);
-                System.out.println("Please enter a valid integer.");
-                scanner.nextLine(); // Clear the input buffer
-            } catch (ArithmeticException a) {
-                System.out.println(a);
-                System.out.println("This number is negative");
-                System.out.println("id");
-            }
-        }
-    }
-
-    /// phone number uzunlugunu yoxlamaq
-    private static boolean phoneNumberLength(String a) throws ArithmeticException {
-        if (a.length() != 10) {
-
-            System.out.println(a);
-
-            throw new ArithmeticException("lenght is not 10");
-
-        }
-
-        return true;
-    }
 
     public static void main(String[] args) throws Exception {
-        clearConsole();
+        ContactInterface.clearConsole();
         ContactIMPL contactIMPL = new ContactIMPL();
         System.out.println("Welcome to the contact manager");
         Scanner scanner = new Scanner(System.in);
-        // adding default contacts
-        // Contact c1 = new Contact(1, "nurgun", "22");
-        // Contact c2 = new Contact(2, "ulker", "2");
-        // Contact c3 = new Contact(3, "gulnar", "16");
-        // contactIMPL.addContact(c1);
-        // contactIMPL.addContact(c2);
-        // contactIMPL.addContact(c3);
-        contactIMPL.createRandomContacts(4);
+        
+        
 
         boolean operation = true;
         while (operation) {
 
-            menu();
+            System.out.println("1 - add");
+            System.out.println("2 - show");
+            System.out.println("3 - edit");
+            System.out.println("4 - delete");
+            System.out.println("5 - exit");
+            System.out.println("6 - get by name");
+            System.out.println("7 - get by id");
+            System.out.println("8 - get by number");
+            System.out.println("9 - generate random contacts");
 
-            int value = checkNumber(scanner);
+            int value = ContactInterface.checkNumber(scanner);
 
             switch (value) {
 
                 case 1: {
-                    clearConsole();
+                    // clearConsole();
+                    ContactInterface.clearConsole();
                     System.out.println("add contact");
                     Contact c = new Contact();
                     System.out.println("id");
 
-                    int id = checkNumber(scanner);
+                    int id = ContactInterface.checkNumber(scanner);
 
                     if (!contactIMPL.checkexist(id)) {
                         System.out.println("name");
                         scanner.nextLine();
                         String name = scanner.nextLine();
                         c.setName(name);
-                        System.out.println("number");
-                        String number = scanner.nextLine();
+                        System.out.print("number: +994 ");
+                        String number =scanner.next();
                         try {
-                            if (phoneNumberLength(number)) {
+                            if (contactIMPL.phoneNumberLength(number)) {
 
                                 c.setNumber(number);
                                 c.setId(id);
@@ -119,14 +60,15 @@ public class AppSwitchCase {
                             System.out.println(e);
                         }
 
-                    } else {
-                        System.out.println("this id exists");
+                    } 
+                    else {
+                        System.out.println("this already exists");
                     }
                     break;
 
                 }
                 case 2: {
-                    clearConsole();
+                    ContactInterface.clearConsole();
                     System.out.println("showing contacts");
 
                     List<Contact> showList = contactIMPL.showContactList();
@@ -134,7 +76,6 @@ public class AppSwitchCase {
                     for (Contact contact : showList) {
                         System.out.println(contact.toString());
                     }
-                    // System.out.println(showList);
 
                     if (showList.size() == 0) {
                         System.out.println("list is empty");
@@ -142,30 +83,19 @@ public class AppSwitchCase {
                     break;
                 }
                 case 3: {
-                    clearConsole();
+                    ContactInterface.clearConsole();
                     System.out.println(
-                            "edit contact: enter id, name, number. If id is correct, you can edit. Insert in multiple lines, not one");
+                            "edt");
                     System.out.println("Enter according to this order:");
                     System.out.println("id you want to edit");
-                    int idtoedit = checkNumber(scanner);
+                    int idtoedit = ContactInterface.checkNumber(scanner);
 
-                    // try {
-
-                    // idtoedit = scanner.nextInt();
-                    // positivenumber(idtoedit);
-
-                    // } catch (InputMismatchException e) {
-                    // System.out.println("Enter a number.");
-                    // scanner.nextLine(); // Clear the input buffer
-                    // continue; // Restart the loop
-                    // } catch (ArithmeticException a) {
-                    // System.out.println("this number is negative");
-                    // continue;
-                    // }
                     if (contactIMPL.checkexist(idtoedit)) {
 
                         System.out.println("new id you want to set");
-                        int newid = checkNumber(scanner);
+                        int newid = ContactInterface.checkNumber(scanner);
+
+                       
 
                         scanner.nextLine();
 
@@ -174,55 +104,31 @@ public class AppSwitchCase {
                         System.out.println("new number");
                         String newnumber = scanner.nextLine();
                         try {
-                            if (phoneNumberLength(newnumber)) {
-                                System.out
-                                        .println(contactIMPL.editContactbyID(idtoedit, newid, newname, newnumber));
+                            if (contactIMPL.phoneNumberLength(newnumber)) {
+                                contactIMPL.editContactbyID(idtoedit, newid, newname, newnumber);
                             }
                         } catch (Exception e) {
                             System.out.println(e);
 
                         }
-
-                    } else {
-                        System.out.println("this id does not exist");
                     }
 
                     break;
                 }
                 case 4: {
-                    clearConsole();
+                    ContactInterface.clearConsole();
                     System.out.println("insert id");
-                    int idDelete = checkNumber(scanner);
-                    // int idDelete;
-                    // try {
-                    // idDelete = scanner.nextInt();
-                    // positivenumber(idDelete);
-                    // if (contactIMPL.checkexist(idDelete)) {
-                    // contactIMPL.deleteContactbyID(idDelete);
-                    // } else {
-                    // System.out.println("no such id");
-                    // }
-
-                    // } catch (InputMismatchException e) {
-                    // System.out.println("Invalid input. Please enter a valid integer for the
-                    // ID.");
-                    // scanner.nextLine(); // Clear the input buffer
-                    // continue; // Restart the loop
-                    // } catch (ArithmeticException a) {
-                    // System.out.println("this number is negative");
-                    // continue;
-                    // }
-
+                    int idDelete = ContactInterface.checkNumber(scanner);
                     contactIMPL.deleteContactbyID(idDelete);
                     break;
                 }
                 case 5: {
-                    clearConsole();
+                    ContactInterface.clearConsole();
                     operation = false;
                     break;
                 }
                 case 6: {
-                    clearConsole();
+                    ContactInterface.clearConsole();
                     System.out.println("enter name");
                     scanner.nextLine();
                     String finder = scanner.nextLine();
@@ -230,39 +136,29 @@ public class AppSwitchCase {
                     break;
 
                 }
-
                 case 7: {
-                    clearConsole();
+                    ContactInterface.clearConsole();
                     System.out.println("enter id");
                     scanner.nextLine();
-                    // int finder;
-                    // try {
-                    // finder = scanner.nextInt();
-                    // positivenumber(finder);
-                    // System.out.println(contactIMPL.getbyId(finder));
-                    // } catch (InputMismatchException e) {
-                    // System.out.println("Please enter a valid integer.");
-                    // scanner.nextLine(); // Clear the input buffer
-                    // continue; // Restart the loop
-                    // } catch (ArithmeticException a) {
-                    // System.out.println("this number is negative");
-                    // continue;
-                    // }
-                    int finder = checkNumber(scanner);
-
+                    int finder = ContactInterface.checkNumber(scanner);
                     System.out.println(contactIMPL.getbyId(finder));
 
                     break;
                 }
                 case 8: {
-                    clearConsole();
+                    ContactInterface.clearConsole();
                     System.out.println("enter number");
                     scanner.nextLine();
                     String finder = scanner.nextLine();
                     System.out.println(contactIMPL.getbyNumber(finder));
-
                     break;
-
+                }
+                case 9:{
+                    System.out.println("generating random contacts, add number of contact");
+                    int people=scanner.nextInt();
+                    contactIMPL.createRandomContacts(people);
+                    System.out.println(contactIMPL.showContactList());
+                    
                 }
                 default:
                     System.out.println("no case");
@@ -270,7 +166,7 @@ public class AppSwitchCase {
             }
 
         }
-        clearConsole();
+        ContactInterface.clearConsole();
     }
 
 }

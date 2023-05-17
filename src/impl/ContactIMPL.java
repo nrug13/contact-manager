@@ -12,7 +12,7 @@ import java.util.Random;
 public class ContactIMPL implements ContactInterface {
 
     List<Contact> contactList = new ArrayList<>();
-
+     
     @Override
     public void addContact(Contact c) {
         contactList.add(c);
@@ -67,38 +67,54 @@ public class ContactIMPL implements ContactInterface {
                 System.out.println("this is going to be deleted " + deleteList);
 
             }
+            else{
+                wrongIdList(deleteList);
+                break;
+            }
 
         }
-        wrongIdList(deleteList);
+        
         contactList.removeAll(deleteList);
         return contactList;
     }
 
     @Override
-    public List<Contact> editContactbyID(int id, int newID, String name, String number) {
+    // bu metod gah isleyir gah islemir
+    public List<Contact> editContactbyID(int id, int newID, String name, String number) throws NoSuchObjectException {
         List<Contact> editList = new ArrayList<>() {
 
         };
         for (Contact contact : contactList) {
-            if (contact.getId() == id) {
-                if (!wrongIdList(editList)) {
+            if (contact.getId() == id ) {
+                if(!checkexist(newID)){
+                    contact.setId(newID);
                     contact.setName(name);
                     contact.setNumber(number);
+                    editList.add(contact);
                 }
-
+                else{
+                    wrongIdList(editList);
+                    break;
+                }
+                
             }
+            
+            
 
+            // if (editList.isEmpty()) {
+            //     
+            // }
         }
         return contactList;
     }
 
-    public boolean checkexist(int id) {
+    public boolean checkexist(int id) throws NoSuchObjectException {
         for (Contact contact : contactList) {
             if (id == contact.getId()) {
 
                 return true;
             }
-
+            
         }
         return false;
 
@@ -125,9 +141,9 @@ public class ContactIMPL implements ContactInterface {
     public boolean wrongIdList(List<Contact> idList) throws NoSuchElementException {
         boolean flag = true;
         if (idList.size() == 0) {
-            System.out.println("error");
-            System.out.println(NoSuchElementException.class);
-            System.out.println("this does not exist");
+           
+            System.out.println("id error: duplicate or non-existent");
+            
             flag = false;
         }
         return flag;
@@ -152,14 +168,28 @@ public class ContactIMPL implements ContactInterface {
 
         for (int i = 0; i < numberOfContacts; i++) {
             int id1 = 1;
-            int id2 = 100;
+            int id2 = 100000000;
             int id = (int) (Math.floor(Math.random() * (id1 - id2)) + (id2));
-            String name = "random person" + id;
+            String name = "random person" + id / 1000;
             String number = "994" + id * 10;
-            Contact contact = new Contact(id, name, number);
+            Contact contact = new Contact(id / 100000, name, number);
             contactList.add(contact);
 
         }
+    }
+
+    ////// deyisilecek
+    @Override
+    public boolean phoneNumberLength(String a) throws ArithmeticException {
+        if (a.length() > 11) {
+
+            System.out.println(a);
+
+            throw new ArithmeticException("lenght is not 10");
+
+        }
+
+        return true;
     }
 
 }
