@@ -5,6 +5,7 @@ import entity.Contact;
 import impl.ContactIMPL;
 import inter.ContactInterface;
 import java.util.Random;
+
 public class AppSwitchCase {
 
     public static void main(String[] args) throws Exception {
@@ -12,9 +13,6 @@ public class AppSwitchCase {
         ContactIMPL contactIMPL = new ContactIMPL();
         System.out.println("Welcome to the contact manager");
         Scanner scanner = new Scanner(System.in);
-        
-        
-
         boolean operation = true;
         while (operation) {
 
@@ -47,7 +45,7 @@ public class AppSwitchCase {
                         String name = scanner.nextLine();
                         c.setName(name);
                         System.out.print("number: +994 ");
-                        String number =scanner.next();
+                        String number = scanner.next();
                         try {
                             if (contactIMPL.phoneNumberLength(number)) {
 
@@ -60,8 +58,7 @@ public class AppSwitchCase {
                             System.out.println(e);
                         }
 
-                    } 
-                    else {
+                    } else {
                         System.out.println("this already exists");
                     }
                     break;
@@ -70,16 +67,7 @@ public class AppSwitchCase {
                 case 2: {
                     ContactInterface.clearConsole();
                     System.out.println("showing contacts");
-
-                    List<Contact> showList = contactIMPL.showContactList();
-
-                    for (Contact contact : showList) {
-                        System.out.println(contact.toString());
-                    }
-
-                    if (showList.size() == 0) {
-                        System.out.println("list is empty");
-                    }
+                    contactIMPL.showContactList();
                     break;
                 }
                 case 3: {
@@ -94,11 +82,7 @@ public class AppSwitchCase {
 
                         System.out.println("new id you want to set");
                         int newid = ContactInterface.checkNumber(scanner);
-
-                       
-
                         scanner.nextLine();
-
                         System.out.println("new name");
                         String newname = scanner.nextLine();
                         System.out.println("new number");
@@ -120,12 +104,15 @@ public class AppSwitchCase {
                     System.out.println("insert id");
                     int idDelete = ContactInterface.checkNumber(scanner);
                     contactIMPL.deleteContactbyID(idDelete);
+
                     break;
                 }
                 case 5: {
                     ContactInterface.clearConsole();
                     operation = false;
+                    ContactInterface.clearConsole();
                     break;
+
                 }
                 case 6: {
                     ContactInterface.clearConsole();
@@ -153,12 +140,12 @@ public class AppSwitchCase {
                     System.out.println(contactIMPL.getbyNumber(finder));
                     break;
                 }
-                case 9:{
+                case 9: {
                     System.out.println("generating random contacts, add number of contact");
-                    int people=scanner.nextInt();
+                    int people = scanner.nextInt();
                     contactIMPL.createRandomContacts(people);
                     System.out.println(contactIMPL.showContactList());
-                    
+
                 }
                 default:
                     System.out.println("no case");

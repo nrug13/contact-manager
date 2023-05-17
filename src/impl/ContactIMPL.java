@@ -12,7 +12,7 @@ import java.util.Random;
 public class ContactIMPL implements ContactInterface {
 
     List<Contact> contactList = new ArrayList<>();
-     
+
     @Override
     public void addContact(Contact c) {
         contactList.add(c);
@@ -20,6 +20,12 @@ public class ContactIMPL implements ContactInterface {
 
     @Override
     public List<Contact> showContactList() {
+        for (Contact contact : contactList) {
+            System.out.println(contact.toString());
+        }
+        if (contactList.size() == 0) {
+            System.out.println("list is empty");
+        }
         return contactList;
     }
 
@@ -66,14 +72,13 @@ public class ContactIMPL implements ContactInterface {
                 deleteList.add(contact);
                 System.out.println("this is going to be deleted " + deleteList);
 
-            }
-            else{
+            } else {
                 wrongIdList(deleteList);
                 break;
             }
 
         }
-        
+
         contactList.removeAll(deleteList);
         return contactList;
     }
@@ -85,24 +90,21 @@ public class ContactIMPL implements ContactInterface {
 
         };
         for (Contact contact : contactList) {
-            if (contact.getId() == id ) {
-                if(!checkexist(newID)){
+            if (contact.getId() == id) {
+                if (!checkexist(newID)) {
                     contact.setId(newID);
                     contact.setName(name);
                     contact.setNumber(number);
                     editList.add(contact);
-                }
-                else{
+                } else {
                     wrongIdList(editList);
                     break;
                 }
-                
+
             }
-            
-            
 
             // if (editList.isEmpty()) {
-            //     
+            //
             // }
         }
         return contactList;
@@ -114,7 +116,7 @@ public class ContactIMPL implements ContactInterface {
 
                 return true;
             }
-            
+
         }
         return false;
 
@@ -141,9 +143,9 @@ public class ContactIMPL implements ContactInterface {
     public boolean wrongIdList(List<Contact> idList) throws NoSuchElementException {
         boolean flag = true;
         if (idList.size() == 0) {
-           
+
             System.out.println("id error: duplicate or non-existent");
-            
+
             flag = false;
         }
         return flag;
