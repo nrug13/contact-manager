@@ -72,4 +72,18 @@ public interface ContactInterface {
         }
     }
 
+    public static void menu(){
+        
+        System.out.println("1 - add");
+        System.out.println("2 - show");
+        System.out.println("3 - edit");
+        System.out.println("4 - delete");
+        System.out.println("5 - exit");
+        System.out.println("6 - get by name");
+        System.out.println("7 - get by id");
+        System.out.println("8 - get by number");
+        System.out.println("9 - generate random contacts");
+    }
+
+    
 }

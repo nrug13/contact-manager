@@ -7,7 +7,7 @@ import java.rmi.NoSuchObjectException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Random;
+// import java.util.Random;
 
 public class ContactIMPL implements ContactInterface {
 
@@ -71,15 +71,16 @@ public class ContactIMPL implements ContactInterface {
                 // System.out.println(contact.getClass());
                 deleteList.add(contact);
                 System.out.println("this is going to be deleted " + deleteList);
+                contactList.removeAll(deleteList);
 
-            } else {
+            } else if (deleteList.isEmpty()) {
                 wrongIdList(deleteList);
                 break;
             }
 
         }
 
-        contactList.removeAll(deleteList);
+        
         return contactList;
     }
 
@@ -166,7 +167,7 @@ public class ContactIMPL implements ContactInterface {
     }
 
     public void createRandomContacts(int numberOfContacts) {
-        Random random = new Random();
+        // Random random = new Random();
 
         for (int i = 0; i < numberOfContacts; i++) {
             int id1 = 1;

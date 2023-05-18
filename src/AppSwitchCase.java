@@ -1,37 +1,22 @@
-import java.util.InputMismatchException;
-import java.util.List;
+
 import java.util.Scanner;
 import entity.Contact;
 import impl.ContactIMPL;
 import inter.ContactInterface;
-import java.util.Random;
 
 public class AppSwitchCase {
 
     public static void main(String[] args) throws Exception {
         ContactInterface.clearConsole();
         ContactIMPL contactIMPL = new ContactIMPL();
-        System.out.println("Welcome to the contact manager");
         Scanner scanner = new Scanner(System.in);
         boolean operation = true;
         while (operation) {
-
-            System.out.println("1 - add");
-            System.out.println("2 - show");
-            System.out.println("3 - edit");
-            System.out.println("4 - delete");
-            System.out.println("5 - exit");
-            System.out.println("6 - get by name");
-            System.out.println("7 - get by id");
-            System.out.println("8 - get by number");
-            System.out.println("9 - generate random contacts");
-
+            ContactInterface.menu();
             int value = ContactInterface.checkNumber(scanner);
-
             switch (value) {
-
                 case 1: {
-                    // clearConsole();
+                    ContactInterface.clearConsole();
                     ContactInterface.clearConsole();
                     System.out.println("add contact");
                     Contact c = new Contact();
@@ -61,6 +46,7 @@ public class AppSwitchCase {
                     } else {
                         System.out.println("this already exists");
                     }
+                   
                     break;
 
                 }
@@ -141,7 +127,7 @@ public class AppSwitchCase {
                     break;
                 }
                 case 9: {
-                    System.out.println("generating random contacts, add number of contact");
+                    System.out.println("enter number of contact");
                     int people = scanner.nextInt();
                     contactIMPL.createRandomContacts(people);
                     System.out.println(contactIMPL.showContactList());
